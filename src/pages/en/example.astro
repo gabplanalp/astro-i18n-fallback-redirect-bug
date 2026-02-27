@@ -1,0 +1,22 @@
+---
+// Bug reproduction: a POST handler that redirects to /en/success on success.
+// With i18n fallback configured, the fallback middleware intercepts the 302
+// returned here and replaces it with a redirect to /example (the de equivalent),
+// completely ignoring the intended redirect target.
+
+if (Astro.request.method === 'POST') {
+  // Simulate form processing with a hardcoded success condition.
+  return Astro.redirect('/en/success');
+}
+---
+<html lang="en">
+  <head><meta charset="utf-8" /><title>Example (en)</title></head>
+  <body>
+    <h1>Example (en)</h1>
+    <p>Submit the form below. Expected: redirect to <code>/en/success</code>.</p>
+    <p>Actual (bug): redirect to <code>/example</code> (the de locale equivalent).</p>
+    <form method="POST" action="/en/example">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
