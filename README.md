@@ -8,8 +8,8 @@ the current page** instead of honouring the handler's intended redirect target.
 ## Environment
 
 ```
-astro:        ^5.3.0
-@astrojs/node ^9.1.3
+astro:        ^5.18.0
+@astrojs/node ^9.5.4
 output:       'server'
 ```
 
